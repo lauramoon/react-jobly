@@ -1,8 +1,9 @@
 .JobCard {
     border: solid 1px darkgrey;
-    width: 100%;
+    width: inherit;
     text-align: left;
     padding: 5px 20px;
     margin: 5px auto;
     background-color: white;
+    border-radius: 5px;
 }

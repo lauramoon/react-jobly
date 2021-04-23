@@ -41,6 +41,14 @@ class JoblyApi {
     return res.companies;
   }
 
+  /** Search all companies for given term */
+
+  static async searchCompanies(term) {
+    const url = term.length > 0 ? `companies/?name=${term}` : `companies/`;
+    let res = await this.request(url);
+    return res.companies;
+  }
+
   /** Get details on a company by handle. */
 
   static async getCompany(handle) {
@@ -52,6 +60,14 @@ class JoblyApi {
 
   static async getJobs() {
     let res = await this.request(`jobs/`);
+    return res.jobs;
+  }
+
+  /** Search all jobs for given term */
+
+  static async searchJobs(term) {
+    const url = term.length > 0 ? `jobs/?title=${term}` : `jobs/`;
+    let res = await this.request(url);
     return res.jobs;
   }
 }
