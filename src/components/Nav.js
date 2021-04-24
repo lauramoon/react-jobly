@@ -10,31 +10,32 @@ function Nav() {
       <NavLink className="NavHome" exact to="/">
         Jobly
       </NavLink>
-      <NavLink exact to="/companies">
-        Companies
-      </NavLink>
-      <NavLink exact to="/jobs">
-        Jobs
-      </NavLink>
+
       {!("username" in user) && (
-        <NavLink exact to="/signup">
-          Sign Up
-        </NavLink>
-      )}
-      {!("username" in user) && (
-        <NavLink exact to="/login">
-          Log In
-        </NavLink>
+        <span>
+          <NavLink exact to="/signup">
+            Sign Up
+          </NavLink>
+          <NavLink exact to="/login">
+            Log In
+          </NavLink>
+        </span>
       )}
       {"username" in user && (
-        <NavLink exact to="/profile">
-          Profile
-        </NavLink>
-      )}
-      {"username" in user && (
-        <NavLink exact to="/logout">
-          Log Out {user.username}
-        </NavLink>
+        <span>
+          <NavLink exact to="/companies">
+            Companies
+          </NavLink>
+          <NavLink exact to="/jobs">
+            Jobs
+          </NavLink>
+          <NavLink exact to="/profile">
+            Profile
+          </NavLink>
+          <NavLink exact to="/logout">
+            Log Out {user.username}
+          </NavLink>
+        </span>
       )}
     </nav>
   );

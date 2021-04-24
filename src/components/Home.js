@@ -1,9 +1,28 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import UserContext from "../helpers/userContext";
+import "./Home.css";
 
 function Home() {
   const currentUser = useContext(UserContext);
-  return <h1>Hi {currentUser.username}!</h1>;
+  if ("username" in currentUser) {
+    return <h1>Welcome, {currentUser.firstName}!</h1>;
+  } else {
+    return (
+      <div className="Home">
+        <h1>Jobly</h1>
+        <p>All the jobs are here.</p>
+        <div>
+          <Link to="/login">
+            <button>Log in</button>
+          </Link>
+          <Link to="/signup">
+            <button>Sign up</button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Home;
