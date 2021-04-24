@@ -1,10 +1,10 @@
-import { useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import { useEffect } from "react";
 
 function Logout({ logoutUser }) {
-  const history = useHistory();
-  logoutUser();
-  history.push("/");
-  return <div></div>;
+  useEffect(() => logoutUser(), [logoutUser]);
+
+  return <Redirect to="/" />;
 }
 
 export default Logout;

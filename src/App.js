@@ -5,17 +5,20 @@ import { BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
 import JoblyApi from "./helpers/api";
 import UserContext from "./helpers/userContext";
+import useLocalStorageState from "./helpers/hooks";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
-  const [token, setToken] = useState("");
+  const [username, setUsername] = useLocalStorageState("username", "");
+  const [token, setToken] = useLocalStorageState("token", "");
 
   useEffect(() => {
     const getUserData = async (username) => {
       const res = await JoblyApi.getUser(username);
       setCurrentUser(res);
     };
-    token.length > 0 ? getUserData(currentUser.username) : setCurrentUser({});
+    JoblyApi.token = token;
+    token.length > 0 ? getUserData(username) : setCurrentUser({});
     // eslint-disable-next-line
   }, [token]);
 
@@ -23,7 +26,7 @@ function App() {
     const register = async (newUserData) => {
       try {
         const res = await JoblyApi.registerNewUser(newUserData);
-        setCurrentUser({ username: newUserData.username });
+        setUsername(newUserData.username);
         setToken(res);
       } catch (err) {
         console.log(err);
@@ -33,23 +36,22 @@ function App() {
   };
 
   const loginUser = async (userData) => {
-    const login = async (userData) => {
-      try {
-        const res = await JoblyApi.loginUser(userData);
-        setCurrentUser({ username: userData.username });
-        setToken(res);
-        return true;
-      } catch (err) {
-        console.log(err);
-        setToken("");
-        return false;
-      }
-    };
-    return login(userData);
+    try {
+      const res = await JoblyApi.loginUser(userData);
+      setUsername(userData.username);
+      setToken(res);
+      console.log(token);
+      return true;
+    } catch (err) {
+      console.log(err);
+      setToken("");
+      return false;
+    }
   };
 
   const logoutUser = () => {
     setToken("");
+    setUsername("");
     setCurrentUser({});
   };
 
