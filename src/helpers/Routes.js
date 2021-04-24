@@ -7,14 +7,14 @@ import CompanyDetail from "../components/CompanyDetail";
 import Jobs from "../components/Jobs";
 import Home from "../components/Home";
 
-function Routes() {
+function Routes({ registerUser, loginUser }) {
   return (
     <Switch>
       <Route exact path="/signup">
-        <Signup />
+        <Signup registerUser={registerUser} />
       </Route>
       <Route exact path="/login">
-        <Login />
+        <Login loginUser={loginUser} />
       </Route>
       <Route exact path="/profile">
         <Profile />
