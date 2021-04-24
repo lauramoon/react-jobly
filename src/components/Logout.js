@@ -1,8 +1,10 @@
-import { useHistory } from "react";
+import { useHistory } from "react-router-dom";
 
-function Logout() {
+function Logout({ logoutUser }) {
   const history = useHistory();
+  logoutUser();
   history.push("/");
+  return <div></div>;
 }
 
 export default Logout;

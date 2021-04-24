@@ -2,12 +2,13 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 import Profile from "../components/Profile";
+import Logout from "../components/Logout";
 import Companies from "../components/Companies";
 import CompanyDetail from "../components/CompanyDetail";
 import Jobs from "../components/Jobs";
 import Home from "../components/Home";
 
-function Routes({ registerUser, loginUser }) {
+function Routes({ registerUser, loginUser, logoutUser }) {
   return (
     <Switch>
       <Route exact path="/signup">
@@ -18,6 +19,9 @@ function Routes({ registerUser, loginUser }) {
       </Route>
       <Route exact path="/profile">
         <Profile />
+      </Route>
+      <Route exact path="/logout">
+        <Logout logoutUser={logoutUser} />
       </Route>
       <Route exact path="/companies/:handle">
         <CompanyDetail />

@@ -48,13 +48,22 @@ function App() {
     return login(userData);
   };
 
+  const logoutUser = () => {
+    setToken("");
+    setCurrentUser({});
+  };
+
   return (
     <div className="App">
       <UserContext.Provider value={currentUser}>
         <BrowserRouter>
           <Nav />
           <div className="Content">
-            <Routes registerUser={registerUser} loginUser={loginUser} />
+            <Routes
+              registerUser={registerUser}
+              loginUser={loginUser}
+              logoutUser={logoutUser}
+            />
           </div>
         </BrowserRouter>
       </UserContext.Provider>
