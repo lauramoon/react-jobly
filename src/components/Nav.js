@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import UserContext from "../helpers/userContext";
 import "./Nav.css";
 
 function Nav() {
+  const user = useContext(UserContext);
   return (
     <nav className="Nav">
       <NavLink className="NavHome" exact to="/">
@@ -13,12 +16,26 @@ function Nav() {
       <NavLink exact to="/jobs">
         Jobs
       </NavLink>
-      <NavLink exact to="/signup">
-        Sign Up
-      </NavLink>
-      <NavLink exact to="/login">
-        Log In
-      </NavLink>
+      {!("username" in user) && (
+        <NavLink exact to="/signup">
+          Sign Up
+        </NavLink>
+      )}
+      {!("username" in user) && (
+        <NavLink exact to="/login">
+          Log In
+        </NavLink>
+      )}
+      {"username" in user && (
+        <NavLink exact to="/profile">
+          Profile
+        </NavLink>
+      )}
+      {"username" in user && (
+        <NavLink exact to="/logout">
+          Log Out {user.username}
+        </NavLink>
+      )}
     </nav>
   );
 }

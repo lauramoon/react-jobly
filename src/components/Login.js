@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
-import UserContext from "../helpers/userContext";
 import "./Login.css";
 
 function Login({ loginUser }) {
