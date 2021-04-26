@@ -10,7 +10,7 @@ import CompanyDetail from "../components/CompanyDetail";
 import Jobs from "../components/Jobs";
 import Home from "../components/Home";
 
-function Routes({ registerUser, loginUser, logoutUser }) {
+function Routes({ registerUser, loginUser, logoutUser, updateUser }) {
   const currentUser = useContext(UserContext);
 
   return (
@@ -22,7 +22,7 @@ function Routes({ registerUser, loginUser, logoutUser }) {
         <Login loginUser={loginUser} />
       </Route>
       <Route exact path="/profile">
-        <Profile />
+        <Profile updateUser={updateUser} />
       </Route>
       <Route exact path="/logout">
         <Logout logoutUser={logoutUser} />

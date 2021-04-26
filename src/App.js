@@ -48,6 +48,31 @@ function App() {
     }
   };
 
+  const updateUser = async (updatedUserData) => {
+    try {
+      const loginData = (({ username, password }) => ({ username, password }))(
+        updatedUserData
+      );
+      const verified = await JoblyApi.verifyUser(loginData);
+
+      if (verified) {
+        const userData = (({ username, firstName, lastName, email }) => ({
+          username,
+          firstName,
+          lastName,
+          email,
+        }))(updatedUserData);
+        const res = await JoblyApi.updateUser(userData);
+        setCurrentUser(res);
+        return true;
+      }
+      return false;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  };
+
   const logoutUser = () => {
     setToken("");
     setUsername("");
@@ -64,6 +89,7 @@ function App() {
               registerUser={registerUser}
               loginUser={loginUser}
               logoutUser={logoutUser}
+              updateUser={updateUser}
             />
           </div>
         </BrowserRouter>

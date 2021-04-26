@@ -87,10 +87,25 @@ class JoblyApi {
     return res.token;
   }
 
+  /** Verify password (for user update) */
+  static async verifyUser(userData) {
+    let res = await this.request(`auth/token/`, userData, "post");
+    return "token" in res;
+  }
+
   /** Get user data */
 
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  /** Update user data */
+
+  static async updateUser(userData) {
+    const username = userData.username;
+    delete userData.username;
+    const res = await this.request(`users/${username}`, userData, "patch");
     return res.user;
   }
 }
