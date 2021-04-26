@@ -6,7 +6,20 @@ import "./Home.css";
 function Home() {
   const currentUser = useContext(UserContext);
   if ("username" in currentUser) {
-    return <h1>Welcome, {currentUser.firstName}!</h1>;
+    return (
+      <div className="Home">
+        <h1>Welcome, {currentUser.firstName}!</h1>
+        <p>All the jobs are here.</p>
+        <div>
+          <Link to="/jobs">
+            <button>Jobs</button>
+          </Link>
+          <Link to="/companies">
+            <button>Companies</button>
+          </Link>
+        </div>
+      </div>
+    );
   } else {
     return (
       <div className="Home">

@@ -40,7 +40,6 @@ function App() {
       const res = await JoblyApi.loginUser(userData);
       setUsername(userData.username);
       setToken(res);
-      console.log(token);
       return true;
     } catch (err) {
       console.log(err);
