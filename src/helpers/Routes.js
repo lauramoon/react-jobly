@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import UserContext from "./userContext";
 import Signup from "../components/Signup";
 import Login from "../components/Login";
 import Profile from "../components/Profile";
@@ -9,6 +11,8 @@ import Jobs from "../components/Jobs";
 import Home from "../components/Home";
 
 function Routes({ registerUser, loginUser, logoutUser }) {
+  const currentUser = useContext(UserContext);
+
   return (
     <Switch>
       <Route exact path="/signup">
@@ -24,13 +28,17 @@ function Routes({ registerUser, loginUser, logoutUser }) {
         <Logout logoutUser={logoutUser} />
       </Route>
       <Route exact path="/companies/:handle">
-        <CompanyDetail />
+        {"username" in currentUser ? (
+          <CompanyDetail />
+        ) : (
+          <Redirect to="/login" />
+        )}
       </Route>
       <Route exact path="/companies">
-        <Companies />
+        {"username" in currentUser ? <Companies /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/jobs">
-        <Jobs />
+        {"username" in currentUser ? <Jobs /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/">
         <Home />
