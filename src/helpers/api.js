@@ -88,6 +88,7 @@ class JoblyApi {
   }
 
   /** Verify password (for user update) */
+
   static async verifyUser(userData) {
     let res = await this.request(`auth/token/`, userData, "post");
     return "token" in res;
@@ -107,6 +108,17 @@ class JoblyApi {
     delete userData.username;
     const res = await this.request(`users/${username}`, userData, "patch");
     return res.user;
+  }
+
+  /** Apply to job */
+
+  static async apply(username, jobid) {
+    const res = await this.request(
+      `users/${username}/jobs/${jobid}`,
+      {},
+      "post"
+    );
+    return res.applied;
   }
 }
 

@@ -5,6 +5,7 @@ import "./Home.css";
 
 function Home() {
   const currentUser = useContext(UserContext);
+  console.log(currentUser);
   if ("username" in currentUser) {
     return (
       <div className="Home">

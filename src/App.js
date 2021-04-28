@@ -63,7 +63,7 @@ function App() {
           email,
         }))(updatedUserData);
         const res = await JoblyApi.updateUser(userData);
-        setCurrentUser(res);
+        setCurrentUser({ ...currentUser, ...res });
         return true;
       }
       return false;
@@ -79,6 +79,22 @@ function App() {
     setCurrentUser({});
   };
 
+  const applyToJob = (id) => {
+    const apply = async (id) => {
+      console.log("applying...");
+      const res = await JoblyApi.apply(currentUser.username, id);
+      if (res === id) {
+        const jobList = currentUser.applications;
+        jobList.push(id);
+        setCurrentUser((currentUser) => ({
+          ...currentUser,
+          applications: jobList,
+        }));
+      }
+    };
+    apply(id);
+  };
+
   return (
     <div className="App">
       <UserContext.Provider value={currentUser}>
@@ -90,6 +106,7 @@ function App() {
               loginUser={loginUser}
               logoutUser={logoutUser}
               updateUser={updateUser}
+              applyToJob={applyToJob}
             />
           </div>
         </BrowserRouter>

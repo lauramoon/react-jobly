@@ -10,7 +10,13 @@ import CompanyDetail from "../components/CompanyDetail";
 import Jobs from "../components/Jobs";
 import Home from "../components/Home";
 
-function Routes({ registerUser, loginUser, logoutUser, updateUser }) {
+function Routes({
+  registerUser,
+  loginUser,
+  logoutUser,
+  updateUser,
+  applyToJob,
+}) {
   const currentUser = useContext(UserContext);
 
   return (
@@ -29,7 +35,7 @@ function Routes({ registerUser, loginUser, logoutUser, updateUser }) {
       </Route>
       <Route exact path="/companies/:handle">
         {"username" in currentUser ? (
-          <CompanyDetail />
+          <CompanyDetail applyToJob={applyToJob} />
         ) : (
           <Redirect to="/login" />
         )}
@@ -38,7 +44,11 @@ function Routes({ registerUser, loginUser, logoutUser, updateUser }) {
         {"username" in currentUser ? <Companies /> : <Redirect to="/login" />}
       </Route>
       <Route exact path="/jobs">
-        {"username" in currentUser ? <Jobs /> : <Redirect to="/login" />}
+        {"username" in currentUser ? (
+          <Jobs applyToJob={applyToJob} />
+        ) : (
+          <Redirect to="/login" />
+        )}
       </Route>
       <Route exact path="/">
         <Home />

@@ -5,7 +5,7 @@ import JobCard from "./JobCard";
 
 import "./CompanyDetail.css";
 
-function CompanyDetail() {
+function CompanyDetail({ applyToJob }) {
   const { handle } = useParams();
 
   const [company, setCompany] = useState("");
@@ -19,15 +19,13 @@ function CompanyDetail() {
     //eslint-disable-next-line
   }, []);
 
-  console.log(company.jobs);
-
   if (company.jobs) {
     return (
       <div className="CompanyDetail">
         <h2>{company.name}</h2>
         <p>{company.description}</p>
         {company.jobs.map((j) => (
-          <JobCard key={j.id} job={j} />
+          <JobCard key={j.id} job={j} apply={applyToJob} />
         ))}
       </div>
     );

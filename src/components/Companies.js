@@ -17,9 +17,7 @@ function Companies() {
   }, []);
 
   const searchCompanies = (searchTerm) => {
-    console.log("in searchCompanies");
     const search = async () => {
-      console.log("IN SEARCH");
       const response = await JoblyApi.searchCompanies(searchTerm);
       console.log(response);
       setCompanies(response);
