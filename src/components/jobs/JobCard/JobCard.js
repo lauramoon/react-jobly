@@ -15,7 +15,7 @@ function JobCard({ job, apply }) {
   return (
     <div className="JobCard">
       <h2>
-        {job.title} {job.companyName && <small>- {job.companyName}</small>}
+        {job.title} {job.companyHandle && <small><em> - {job.companyHandle}</em></small>}
       </h2>
       <div className="JobCard-lower">
         <div className="JobCard-details">
