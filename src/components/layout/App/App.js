@@ -83,12 +83,12 @@ function App() {
     const apply = async (id) => {
       console.log("applying...");
       const res = await JoblyApi.apply(currentUser.username, id);
-      if (res === id) {
-        const jobList = currentUser.applications;
+      if (res.jobId === id) {
+        const jobList = currentUser.jobs;
         jobList.push(id);
         setCurrentUser((currentUser) => ({
           ...currentUser,
-          applications: jobList,
+          jobs: jobList,
         }));
       }
     };

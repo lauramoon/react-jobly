@@ -4,13 +4,12 @@ import UserContext from "../../../helpers/userContext";
 
 function JobCard({ job, apply }) {
   const currentUser = useContext(UserContext);
-  const [appList, setAppList] = useState(currentUser.jobs);
-  const [interested, setInterested] = useState(appList.includes(job.id));
+  const [interested, setInterested] = useState(currentUser.jobs.includes(job.id));
 
   const handleClick = () => {
     apply(job.id);
     setInterested(true);
-    setInterested(currentUser.applications);
+    setInterested(currentUser.jobs);
   };
 
   return (

@@ -115,17 +115,11 @@ class JoblyApi {
   static async apply(username, jobid) {
     const res = await this.request(
       `users/${username}/jobs/${jobid}`,
-      {},
+      {status: "interested"},
       "post"
     );
     return res.applied;
   }
 }
-
-// for now, put token ("testuser" / "password" on class)
-// JoblyApi.token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-//   "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-//   "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
 
 export default JoblyApi;
