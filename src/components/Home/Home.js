@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import UserContext from "../helpers/userContext";
+import UserContext from "../../helpers/userContext";
 import "./Home.css";
 
 function Home() {

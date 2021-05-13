@@ -1,16 +1,16 @@
 import { useState, useContext } from "react";
 import "./JobCard.css";
-import UserContext from "../helpers/userContext";
+import UserContext from "../../../helpers/userContext";
 
 function JobCard({ job, apply }) {
   const currentUser = useContext(UserContext);
-  const [appList, setAppList] = useState(currentUser.applications);
-  const [applied, setApplied] = useState(appList.includes(job.id));
+  const [appList, setAppList] = useState(currentUser.jobs);
+  const [interested, setInterested] = useState(appList.includes(job.id));
 
   const handleClick = () => {
     apply(job.id);
-    setApplied(true);
-    setAppList(currentUser.applications);
+    setInterested(true);
+    setInterested(currentUser.applications);
   };
 
   return (
@@ -24,8 +24,8 @@ function JobCard({ job, apply }) {
           <p>Equity: {job.equity}</p>
         </div>
         <div className="JobCard-apply">
-          <button onClick={handleClick} disabled={applied}>
-            {applied ? "Applied" : "Apply"}
+          <button onClick={handleClick} disabled={interested}>
+            Interested
           </button>
         </div>
       </div>

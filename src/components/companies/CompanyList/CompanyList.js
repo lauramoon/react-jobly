@@ -1,4 +1,4 @@
-import CompanyCard from "./CompanyCard";
+import CompanyCard from "../CompanyCard/CompanyCard";
 
 function CompanyList({ companies }) {
   return (

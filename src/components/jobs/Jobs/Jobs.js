@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import JoblyApi from "../helpers/api";
-import JobCard from "./JobCard";
-import SearchBox from "./SearchBox";
+import JoblyApi from "../../../helpers/api";
+import JobCard from "../JobCard/JobCard";
+import SearchBox from "../../forms/SearchBox/SearchBox";
 import "./Jobs.css";
 
 function Jobs({ applyToJob }) {

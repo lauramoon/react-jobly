@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import UserContext from "../helpers/userContext";
+import UserContext from "../../../helpers/userContext";
 import "./Profile.css";
 
 function Profile({ updateUser }) {

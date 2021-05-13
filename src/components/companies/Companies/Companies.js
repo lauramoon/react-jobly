@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
-import JoblyApi from "../helpers/api";
+import JoblyApi from "../../../helpers/api";
 
-import CompanyList from "./CompanyList";
-import SearchBox from "./SearchBox";
+import CompanyList from "../CompanyList/CompanyList";
+import SearchBox from "../../forms/SearchBox/SearchBox";
 
 function Companies() {
   const [companies, setCompanies] = useState([]);

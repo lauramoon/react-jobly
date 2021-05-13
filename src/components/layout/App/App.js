@@ -1,11 +1,11 @@
-import Routes from "./helpers/Routes";
-import Nav from "./components/Nav";
+import Routes from "../../Routes/Routes";
+import Nav from "../Nav/Nav";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { useEffect, useState } from "react";
-import JoblyApi from "./helpers/api";
-import UserContext from "./helpers/userContext";
-import useLocalStorageState from "./helpers/hooks";
+import JoblyApi from "../../../helpers/api";
+import UserContext from "../../../helpers/userContext";
+import useLocalStorageState from "../../../helpers/hooks";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});

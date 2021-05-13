@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import UserContext from "./userContext";
-import Signup from "../components/Signup";
-import Login from "../components/Login";
-import Profile from "../components/Profile";
-import Logout from "../components/Logout";
-import Companies from "../components/Companies";
-import CompanyDetail from "../components/CompanyDetail";
-import Jobs from "../components/Jobs";
-import Home from "../components/Home";
+import UserContext from "../../helpers/userContext";
+import Signup from "../userPages/Signup/Signup";
+import Login from "../userPages/Login/Login";
+import Profile from "../userPages/Profile/Profile";
+import Logout from "../userPages/Logout/Logout";
+import Companies from "../companies/Companies/Companies";
+import CompanyDetail from "../companies/CompanyDetail/CompanyDetail";
+import Jobs from "../jobs/Jobs/Jobs";
+import Home from "../Home/Home";
 
 function Routes({
   registerUser,
