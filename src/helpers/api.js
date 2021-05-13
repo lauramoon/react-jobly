@@ -44,7 +44,7 @@ class JoblyApi {
   /** Search all companies for given term */
 
   static async searchCompanies(term) {
-    const url = term.length > 0 ? `companies/?name=${term}` : `companies/`;
+    const url = term.length > 0 ? `companies/?nameLike=${term}` : `companies/`;
     let res = await this.request(url);
     return res.companies;
   }
