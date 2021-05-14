@@ -4,7 +4,7 @@ import JobCard from "../JobCard/JobCard";
 import SearchBox from "../../forms/SearchBox/SearchBox";
 import "./Jobs.css";
 
-function Jobs({ applyToJob }) {
+function Jobs({ saveJob }) {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function Jobs({ applyToJob }) {
       <h1>Jobs</h1>
       <SearchBox doSearch={searchJobs} />
       {jobs.map((j) => (
-        <JobCard key={j.id} job={j} apply={applyToJob} />
+        <JobCard key={j.id} job={j} saveJob={saveJob} />
       ))}
     </div>
   );

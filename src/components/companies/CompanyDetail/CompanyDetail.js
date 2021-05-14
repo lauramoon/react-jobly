@@ -5,7 +5,7 @@ import JobCard from "../../jobs/JobCard/JobCard";
 
 import "./CompanyDetail.css";
 
-function CompanyDetail({ applyToJob }) {
+function CompanyDetail({ saveJob }) {
   const { handle } = useParams();
 
   const [company, setCompany] = useState("");
@@ -25,7 +25,7 @@ function CompanyDetail({ applyToJob }) {
         <h2>{company.name}</h2>
         <p>{company.description}</p>
         {company.jobs.map((j) => (
-          <JobCard key={j.id} job={j} apply={applyToJob} />
+          <JobCard key={j.id} job={j} saveJob={saveJob} />
         ))}
       </div>
     );

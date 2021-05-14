@@ -79,10 +79,10 @@ function App() {
     setCurrentUser({});
   };
 
-  const applyToJob = (id) => {
-    const apply = async (id) => {
-      console.log("applying...");
-      const res = await JoblyApi.apply(currentUser.username, id);
+  const saveJob = (id) => {
+    const save = async (id) => {
+      console.log("saving...");
+      const res = await JoblyApi.saveJob(currentUser.username, id);
       if (res.jobId === id) {
         const jobList = currentUser.jobs;
         jobList.push(id);
@@ -92,7 +92,32 @@ function App() {
         }));
       }
     };
-    apply(id);
+    save(id);
+  };
+
+  const updateApp = (id, newStatus) => {
+    const update = async (id, newStatus) => {
+      console.log("updating...");
+      await JoblyApi.updateApp(currentUser.username, id, newStatus);
+    };
+    update(id, newStatus);
+  };
+
+  const deleteApp = (id) => {
+    const remove = async (id) => {
+      console.log("deleting...");
+      const res = await JoblyApi.deleteApp(currentUser.username, id);
+      console.log(res);
+      if (res.jobId === id) {
+        const jobList = currentUser.jobs;
+        const newJobList = jobList.filter((j) => j !== id);
+        setCurrentUser((currentUser) => ({
+          ...currentUser,
+          jobs: newJobList,
+        }));
+      }
+    };
+    remove(id);
   };
 
   return (
@@ -106,7 +131,9 @@ function App() {
               loginUser={loginUser}
               logoutUser={logoutUser}
               updateUser={updateUser}
-              applyToJob={applyToJob}
+              saveJob={saveJob}
+              updateApp={updateApp}
+              deleteApp={deleteApp}
             />
           </div>
         </BrowserRouter>

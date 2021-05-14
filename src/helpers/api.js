@@ -112,13 +112,38 @@ class JoblyApi {
 
   /** Apply to job */
 
-  static async apply(username, jobid) {
+  static async saveJob(username, jobid) {
     const res = await this.request(
       `users/${username}/jobs/${jobid}`,
       {status: "interested"},
       "post"
     );
     return res.applied;
+  }
+
+  /** Get user's job applications */
+
+  static async getApplications(username) {
+    const res = await this.request(`users/${username}/jobs`);
+    return res.applications;
+  }
+
+  /** Update a job application */
+
+  static async updateApp(username, jobid, status) {
+    console.log("in update app")
+    const res = await this.request(`users/${username}/jobs/${jobid}`, {status}, "patch");
+    console.log("after API call")
+    console.log(res.application)
+    return res.application;
+  }
+
+  /** Delete job application */
+
+  static async deleteApp(username, jobid) {
+    console.log("in delete app")
+    const res = await this.request(`users/${username}/jobs/${jobid}`, {}, "delete");
+    return res.deleted;
   }
 }
 

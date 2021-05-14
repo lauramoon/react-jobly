@@ -9,13 +9,16 @@ import Companies from "../companies/Companies/Companies";
 import CompanyDetail from "../companies/CompanyDetail/CompanyDetail";
 import Jobs from "../jobs/Jobs/Jobs";
 import Home from "../Home/Home";
+import Applications from "../applications/Applications/Applications"
 
 function Routes({
   registerUser,
   loginUser,
   logoutUser,
   updateUser,
-  applyToJob,
+  saveJob,
+  updateApp,
+  deleteApp
 }) {
   const currentUser = useContext(UserContext);
 
@@ -35,7 +38,7 @@ function Routes({
       </Route>
       <Route exact path="/companies/:handle">
         {"username" in currentUser ? (
-          <CompanyDetail applyToJob={applyToJob} />
+          <CompanyDetail saveJob={saveJob} />
         ) : (
           <Redirect to="/login" />
         )}
@@ -45,7 +48,14 @@ function Routes({
       </Route>
       <Route exact path="/jobs">
         {"username" in currentUser ? (
-          <Jobs applyToJob={applyToJob} />
+          <Jobs saveJob={saveJob} />
+        ) : (
+          <Redirect to="/login" />
+        )}
+      </Route>
+      <Route exact path="/applications">
+        {"username" in currentUser ? (
+          <Applications updateApp={updateApp} deleteApp={deleteApp} />
         ) : (
           <Redirect to="/login" />
         )}

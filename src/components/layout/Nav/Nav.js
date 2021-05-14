@@ -29,6 +29,9 @@ function Nav() {
           <NavLink exact to="/jobs">
             Jobs
           </NavLink>
+          <NavLink exact to="/applications">
+            Applications
+          </NavLink>
           <NavLink exact to="/profile">
             Profile
           </NavLink>

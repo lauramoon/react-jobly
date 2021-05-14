@@ -2,12 +2,12 @@ import { useState, useContext } from "react";
 import "./JobCard.css";
 import UserContext from "../../../helpers/userContext";
 
-function JobCard({ job, apply }) {
+function JobCard({ job, saveJob }) {
   const currentUser = useContext(UserContext);
   const [interested, setInterested] = useState(currentUser.jobs.includes(job.id));
 
   const handleClick = () => {
-    apply(job.id);
+    saveJob(job.id);
     setInterested(true);
     setInterested(currentUser.jobs);
   };
