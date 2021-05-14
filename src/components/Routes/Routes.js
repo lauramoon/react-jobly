@@ -9,7 +9,9 @@ import Companies from "../companies/Companies/Companies";
 import CompanyDetail from "../companies/CompanyDetail/CompanyDetail";
 import Jobs from "../jobs/Jobs/Jobs";
 import Home from "../Home/Home";
-import Applications from "../applications/Applications/Applications"
+import Applications from "../applications/Applications/Applications";
+import ApplicationNoLogin from "../applications/ApplicationNoLogin/ApplicationNoLogin";
+import CompaniesNoLogin from "../companies/CompaniesNoLogin/CompaniesNoLogin";
 
 function Routes({
   registerUser,
@@ -18,7 +20,7 @@ function Routes({
   updateUser,
   saveJob,
   updateApp,
-  deleteApp
+  deleteApp,
 }) {
   const currentUser = useContext(UserContext);
 
@@ -40,24 +42,24 @@ function Routes({
         {"username" in currentUser ? (
           <CompanyDetail saveJob={saveJob} />
         ) : (
-          <Redirect to="/login" />
+          <CompaniesNoLogin />
         )}
       </Route>
       <Route exact path="/companies">
-        {"username" in currentUser ? <Companies /> : <Redirect to="/login" />}
+        {"username" in currentUser ? <Companies /> : <CompaniesNoLogin />}
       </Route>
       <Route exact path="/jobs">
         {"username" in currentUser ? (
           <Jobs saveJob={saveJob} />
         ) : (
-          <Redirect to="/login" />
+          <CompaniesNoLogin />
         )}
       </Route>
       <Route exact path="/applications">
         {"username" in currentUser ? (
           <Applications updateApp={updateApp} deleteApp={deleteApp} />
         ) : (
-          <Redirect to="/login" />
+          <ApplicationNoLogin />
         )}
       </Route>
       <Route exact path="/">
